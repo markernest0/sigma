@@ -1,0 +1,27 @@
+title: Duo Application Deleted
+id: d04b528f-3525-46aa-9c86-17533dce5f22
+status: experimental
+description: Detects when a Duo application is deleted.
+references:
+    - https://duo.com/docs/adminapi#administrator-logs
+    - https://markernest.medium.com/duoreverse-a-duo-client-api-wrapper-for-red-teams-230a91b9074e
+tags:
+    - attack.persistence
+    - attack.defense_evasion
+    - attack.t1556.006
+    - attack.impact
+    - attack.t1531
+author: Mark Ernest medium.com/@markernest
+date: 2022/11/13
+logsource:
+    product: duo
+detection:
+    selection:
+        action: 'integration_delete'
+    condition: selection
+fields:
+    - The 'object' field identifies the application deleted.
+    - The 'username' field identifies the admin that deleted the application.
+falsepositives:
+    - This could be an approved operational change.
+level: low

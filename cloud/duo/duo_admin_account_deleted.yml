@@ -1,0 +1,28 @@
+title: Duo Admin Account Deleted
+id: bcbe83b2-6f2c-4684-99e8-7502be35776f
+status: experimental
+description: Detects when a Duo admin account is deleted.
+references:
+    - https://duo.com/docs/adminapi#administrator-logs
+    - https://markernest.medium.com/duoreverse-a-duo-client-api-wrapper-for-red-teams-230a91b9074e
+tags:
+    - attack.persistence
+    - attack.defense_evasion
+    - attack.credential_access
+    - attack.t1556.006
+    - attack.impact
+    - attack.t1531
+author: Mark Ernest medium.com/@markernest
+date: 2022/11/13
+logsource:
+    product: duo
+detection:
+    selection:
+        action: 'admin_delete'
+    condition: selection
+fields:
+    - The 'object' field identifies the admin account deleted.
+    - The 'username' field identifies the admin that deleted the admin account.
+falsepositives:
+    - This could be an approved operational change.
+level: low

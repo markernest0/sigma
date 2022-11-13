@@ -1,0 +1,24 @@
+title: Duo Admin Account Created
+id: c182bcfe-ef78-4225-963b-ff3fd0f9e24b
+status: experimental
+description: Detects when a Duo admin account is created.
+references:
+    - https://duo.com/docs/adminapi#administrator-logs
+    - https://markernest.medium.com/duoreverse-a-duo-client-api-wrapper-for-red-teams-230a91b9074e
+tags:
+    - attack.persistence
+    - attack.t1136.003
+author: Mark Ernest medium.com/@markernest
+date: 2022/11/13
+logsource:
+    product: duo
+detection:
+    selection:
+        action: 'admin_create'
+    condition: selection
+fields:
+    - The 'object' field identifies the admin account created.
+    - The 'username' field identifies the admin that created the admin account.
+falsepositives:
+    - This could be an approved operational change.
+level: low

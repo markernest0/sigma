@@ -1,0 +1,24 @@
+title: Duo Application Created
+id: 04b4afc2-6bca-4b3b-ad1b-82565f9a909c
+status: experimental
+description: Detects when a Duo application is created.
+references:
+    - https://duo.com/docs/adminapi#administrator-logs
+    - https://markernest.medium.com/duoreverse-a-duo-client-api-wrapper-for-red-teams-230a91b9074e
+tags:
+    - attack.persistence
+    - attack.t1556.006
+author: Mark Ernest medium.com/@markernest
+date: 2022/11/13
+logsource:
+    product: duo
+detection:
+    selection:
+        action: 'integration_create'
+    condition: selection
+fields:
+    - The 'object' field identifies the application created.
+    - The 'username' field identifies the admin that created the application.
+falsepositives:
+    - This could be an approved operational change.
+level: informational

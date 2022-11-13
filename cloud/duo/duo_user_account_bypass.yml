@@ -1,0 +1,27 @@
+title: Duo Bypass User
+id: 4e443939-3f03-4082-be35-bcd9c6606414
+status: experimental
+description: Detects when a Duo user is set to bypass.
+references:
+    - https://duo.com/docs/adminapi#administrator-logs
+    - https://markernest.medium.com/duoreverse-a-duo-client-api-wrapper-for-red-teams-230a91b9074e
+tags:
+    - attack.persistence
+    - attack.defense_evasion
+    - attack.credential_access
+    - attack.t1556.006
+author: Mark Ernest medium.com/@markernest
+date: 2022/11/13
+logsource:
+    product: duo
+detection:
+    selection:
+        action: 'user_update'
+        description: 'Bypass'
+    condition: selection
+fields:
+    - The 'object' field identifies the user set to bypass.
+    - The 'username' field identifies the admin that set the user to bypass.
+falsepositives:
+    - This could be an approved operational change to troubleshoot an issue.
+level: low
